@@ -1,0 +1,19 @@
+{
+  "name": "slack-bot-template",
+  "version": "1.0.0",
+  "description": "A skeleton project for implementing a slack bot in node.js",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yanairon/slack-bot-template.git"
+  },
+  "keywords": [
+    "slack"
+  ],
+  "author": "Yanai Ron",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yanairon/slack-bot-template/issues"
+  },
+  "homepage": "https://github.com/yanairon/slack-bot-template#readme"
+}
