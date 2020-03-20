@@ -1,8 +1,14 @@
-var express = require('express');
-var app = express();
+const express = require('express');
+const app = express();
+const fs = require("fs");
 
-// define routes here..
+// Dynamically load routes from /routes
+const routePath = "./lib/routes/";
+fs.readdirSync(routePath).forEach(function(file) {
+    const route = routePath + file;
+    require(route)(app);
+});
 
-var server = app.listen(5000, function () {
-    console.log('Node server is running..');
+app.listen(5000, function () {
+    console.log('Node server is running on port 5000');
 });
