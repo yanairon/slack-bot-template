@@ -2,6 +2,9 @@ const express = require('express');
 const app = express();
 const fs = require('fs');
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 // Dynamically load routes from /routes
 const routePath = './lib/routes/';
 fs.readdirSync(routePath).forEach((file) => {
