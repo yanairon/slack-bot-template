@@ -3,6 +3,11 @@
   "version": "1.0.0",
   "description": "A skeleton project for implementing a slack bot in node.js",
   "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "lint": "eslint .",
+    "test": "node --test"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/yanairon/slack-bot-template.git"
@@ -17,12 +22,7 @@
   },
   "homepage": "https://github.com/yanairon/slack-bot-template#readme",
   "dependencies": {
-    "crypto": "1.0.1",
-    "express": "4.17.3",
-    "file-system": "2.2.2",
-    "fs": "0.0.1-security",
-    "path": "0.12.7",
-    "qs": "6.9.7"
+    "express": "4.22.3"
   },
   "devDependencies": {
     "eslint": "6.8.0"
