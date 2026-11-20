@@ -1,19 +1,33 @@
+'use strict';
+
 const express = require('express');
-const app = express();
 const fs = require('fs');
+const path = require('path');
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+if (!process.env.SLACK_SIGNING_SECRET) {
+    throw new Error('SLACK_SIGNING_SECRET environment variable is required');
+}
 
-// Dynamically load routes from /routes
-const routePath = './lib/routes/';
+const app = express();
+
+function captureRawBody(req, res, buf) {
+    req.rawBody = buf.toString('utf8');
+}
+
+app.use(express.json({verify: captureRawBody}));
+app.use(express.urlencoded({extended: true, verify: captureRawBody}));
+
+const routePath = path.join(__dirname, 'lib', 'routes');
 fs.readdirSync(routePath).forEach((file) => {
-    const route = routePath + file;
     // eslint-disable-next-line global-require
-    require(route)(app);
+    require(path.join(routePath, file))(app);
 });
 
-app.listen(5000, () => {
-    // eslint-disable-next-line no-console
-    console.log('Node server is running on port 5000');
-});
+if (require.main === module) {
+    app.listen(5000, () => {
+        // eslint-disable-next-line no-console
+        console.log('Node server is running on port 5000');
+    });
+}
+
+module.exports = app;
